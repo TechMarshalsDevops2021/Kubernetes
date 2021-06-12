@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: tomcatrs
+ namespace: reddy
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   app: tomcatapp
+ template:
+  metadata:
+   name: tomcatpod
+   namespace: reddy
+   labels:
+    app: tomcatapp
+  spec:
+   containers:
+    - name: mytomcat
+      image: tomcat
+      ports:
+       - containerPort: 8080
+...
